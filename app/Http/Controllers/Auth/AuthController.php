@@ -85,4 +85,14 @@ class AuthController extends Controller
     {
         return route('home');
     }
+
+    /**
+     * Get the failed login message.
+     *
+     * @return string
+     */
+    protected function getFailedLoginMessage()
+    {
+        return trans('validation.login');
+    }
 }
