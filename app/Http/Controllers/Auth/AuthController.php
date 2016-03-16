@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
+    protected $username='username';
     /*
     |--------------------------------------------------------------------------
     | Registration & Login Controller
@@ -134,13 +135,20 @@ class AuthController extends Controller
         return redirect()->route('login')->with('alert','Email Confirmado, ahora puedes iniciar sesion');
     }
 
-    protected function getCredentials($request)
+    /**
+     * Get the needed authorization credentials from the request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array
+     */
+    protected function getCredentials(Request $request)
     {
         return[
-        'email'=> $request->get('email'),
+        'username'=> $request->get('username'),
         'password'=> $request->get('password'),
-        'registration_token'=> null,
-
+        'active'=> true
         ];
+        return $request->only($this->loginUsername(), 'password');
     }
+
 }

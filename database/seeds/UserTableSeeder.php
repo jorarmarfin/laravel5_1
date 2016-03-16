@@ -13,10 +13,12 @@ class UserTableSeeder extends Seeder
     {
     	DB::table('users')->truncate();
         factory(App\User::class)->create([
-        	'name'=> 'Luis',
+            'name'=> 'Luis',
+        	'username'=> 'luiscamp',
         	'email'=> 'luis.mayta@gmail.com',
         	'role'=> 'admin',
-        	'password'=> bcrypt('admin')
+        	'magic_words'=> bcrypt('admin'),
+            'active'=> false
         	]);
         factory(App\User::class,49)->create();
 
