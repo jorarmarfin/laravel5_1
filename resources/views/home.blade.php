@@ -7,6 +7,10 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">Welcome</div>
 				<div class="panel-body">
+					@include('partials.errors')
+					@if(Session::has('alert'))
+						<p class='alert alert-success'>{{Session::get('alert')}}</p>
+					@endif
 					<p>Welcome home</p>
 				</div>
 			</div>

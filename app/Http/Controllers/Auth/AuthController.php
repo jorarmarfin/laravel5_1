@@ -34,7 +34,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest', ['except' => 'getLogout']);
+        $this->middleware('guest', ['except' => ['getLogout','getConfirmation']]);
     }
 
     /**
@@ -132,7 +132,8 @@ class AuthController extends Controller
         $user=User::where('registration_token',$token)->firstOrFail();
         $user->registration_token=null;
         $user->save();
-        return redirect()->route('login')->with('alert','Email Confirmado, ahora puedes iniciar sesion');
+        return redirect()->route('home')
+                ->with('alert','Tu email ha sido verificado');
     }
 
     /**
@@ -143,12 +144,12 @@ class AuthController extends Controller
      */
     protected function getCredentials(Request $request)
     {
-        // return[
-        // 'username'=> $request->get('username'),
-        // 'password'=> $request->get('password'),
+        return[
+        'username'=> $request->get('username'),
+        'password'=> $request->get('password'),
         // 'active'=> true
-        // ];
-        return $request->only($this->loginUsername(), 'password');
+        ];
+        // return $request->only($this->loginUsername(), 'password');
     }
 
 }
