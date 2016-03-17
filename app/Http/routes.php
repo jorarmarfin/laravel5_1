@@ -65,5 +65,21 @@ Route::group(['middleware'=> 'auth'], function() {
 		});
 	});
 
+	Route::group(['middleware' => 'role:admin'], function() {
+	    Route::get('admin/settings',function(){
+			return view('admin/settings');
+		});
+	});
+
+	Route::group(['middleware' => 'role:editor'], function() {
+	    Route::get('admin/posts',function(){
+			return view('admin/posts');
+		});
+	});
+
+
+
+
+
 
 });
