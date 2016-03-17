@@ -143,11 +143,11 @@ class AuthController extends Controller
      */
     protected function getCredentials(Request $request)
     {
-        return[
-        'username'=> $request->get('username'),
-        'password'=> $request->get('password'),
-        'active'=> true
-        ];
+        // return[
+        // 'username'=> $request->get('username'),
+        // 'password'=> $request->get('password'),
+        // 'active'=> true
+        // ];
         return $request->only($this->loginUsername(), 'password');
     }
 
