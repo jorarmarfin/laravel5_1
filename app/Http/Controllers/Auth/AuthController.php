@@ -14,6 +14,8 @@ use Illuminate\Http\Request;
 class AuthController extends Controller
 {
     protected $username='username';
+    protected $maxLoginAttempts=2;
+    protected $lockoutTime=300;
     /*
     |--------------------------------------------------------------------------
     | Registration & Login Controller
